@@ -70,6 +70,28 @@ def detectLED(file, myDir, startY=400, endY=439, startX=354, endX=400,  startTim
 	return meanFrame
 
 
+
+def findCropCoords(imgFolderAndFileType):
+	#from Ggola lab could be useful for cropping
+	# also should check croping functions from DLC
+	#manually select the area containing the head of the mouse, 
+	#which will save the coordinates into a variable, to be used later.
+    ###accepts folder containing image files in format "D:/folder1/folder2/folder3/*.jpg"
+    ###waits for user to draw a rectangular selection
+    ###outputs coordinates of a rectangular selection drawn over an image
+    ###by default, the image displayed is the second image in the input folder
+    import cv2
+    from skimage import io
+    
+    coll = io.ImageCollection(imgFolderAndFileType)
+    coords1 = cv2.selectROI("Image", coll[1]) 
+    
+    #cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    
+    return coords1
+
+
 ###################################################
 # options for signal processing to be implemented
 ###################################################
